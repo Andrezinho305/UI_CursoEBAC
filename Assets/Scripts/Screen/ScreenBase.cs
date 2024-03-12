@@ -21,6 +21,7 @@ namespace Screens
         public ScreenType screenType;
 
         public List<Transform> listOfObjects;
+        public List<Typer> listOfPhrases;
 
         public bool startHidden = false;
 
@@ -74,6 +75,7 @@ namespace Screens
                 obj.DOScale(0, animationDuration).From().SetDelay(o*delayBetweenObjects); //faz com que cresçam do 0 até a escala atual (o from faz ser assim, sem é o contrario) com a duração definida
             }
 
+            Invoke(nameof(StartType), delayBetweenObjects * listOfObjects.Count);
 
         }
 
@@ -83,7 +85,13 @@ namespace Screens
             listOfObjects.ForEach(i => i.gameObject.SetActive(true));
         }
 
-
+        private void StartType()
+        {
+            for (int o = 0; o < listOfPhrases.Count; o++)
+            {
+                listOfPhrases[o].StartType();
+            }
+        }
 
     }
 }
