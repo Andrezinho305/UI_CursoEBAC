@@ -16,6 +16,7 @@ public class Typer : MonoBehaviour
         textMesh.text = "";
     }
 
+
     [NaughtyAttributes.Button]
     public void StartType()
     {

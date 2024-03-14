@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using NaughtyAttributes;
 using DG.Tweening;
+using TMPro;
 
 namespace Screens
 {
@@ -14,6 +16,7 @@ namespace Screens
         Lose,
         Missions,
         Shop
+
     }
 
     public class ScreenBase : MonoBehaviour
@@ -23,6 +26,9 @@ namespace Screens
         public List<Transform> listOfObjects;
         public List<Typer> listOfPhrases;
 
+
+        public Image uiBackground;
+        //public TextMeshProUGUI uiText;
         public bool startHidden = false;
 
         [Header("Animations")]
@@ -35,6 +41,8 @@ namespace Screens
             if(startHidden)
             {
                 HideObjects();
+                uiBackground.enabled = false;
+                //uiText.enabled = false;
             }
         }
 
@@ -42,7 +50,7 @@ namespace Screens
 
         [Button] //ou [NaughtyAttributes.BUtton] caso nao declare a Lib no topo
         //cria um botão no UI da unity que permite executar o código, ao inves de necessitar criar um update com macro do teclado para teste
-        protected virtual void Show()
+        public virtual void Show()
         {
             Debug.Log("Show");
             ShowObjects();
@@ -51,7 +59,7 @@ namespace Screens
         }
 
         [Button]
-        protected virtual void Hide()
+        public virtual void Hide()
         {
             Debug.Log("Hide");
             HideObjects();
@@ -62,6 +70,8 @@ namespace Screens
         private void HideObjects()
         {
             listOfObjects.ForEach(i => i.gameObject.SetActive(false)); //desliga todos os objetos na lista
+            uiBackground.enabled = false;
+            //uiText.enabled = false;
         }
 
 
@@ -76,7 +86,8 @@ namespace Screens
             }
 
             Invoke(nameof(StartType), delayBetweenObjects * listOfObjects.Count);
-
+            uiBackground.enabled = true;
+            //uiText.enabled = true;
         }
 
 
