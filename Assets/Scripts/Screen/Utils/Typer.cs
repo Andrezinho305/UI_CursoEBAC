@@ -7,9 +7,7 @@ public class Typer : MonoBehaviour
 {
     public TextMeshProUGUI textMesh;
     public float timeBetweenLetters;
-
     public string frase;
-
 
     private void Awake()
     {

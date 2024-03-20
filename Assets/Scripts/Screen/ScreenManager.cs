@@ -21,6 +21,12 @@ namespace Screens
             ShowByType(startScreen);            
         }
 
+        private void Scale(Transform t, float size = 1.2f)
+        {
+            t.localScale = Vector3.one * size;
+
+        }
+
 
         public void ShowByType(ScreenType type)
         {

@@ -8,6 +8,7 @@ public class ButtonStartGame : MonoBehaviour
 
     public void OnClick()
     {
+        Debug.Log("Click");
         particleSystem.Play();
     }
 
