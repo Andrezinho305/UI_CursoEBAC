@@ -9,14 +9,21 @@ namespace Screens
     public class ScreenManager : Singleton<ScreenManager>
     {
         public List<ScreenBase> screenBase;
+        public List<GameObject> objs;
 
         public ScreenType startScreen = ScreenType.Panel;
 
         private ScreenBase _currentScreen;
 
+        public Vector3 vec;
+
 
         private void Start()
         {
+            screenBase.GetRandom();
+            Instantiate(objs.GetRandom());
+
+
             HideAll();
             ShowByType(startScreen);            
         }
@@ -41,6 +48,11 @@ namespace Screens
         public void HideAll()
         {
             screenBase.ForEach(i => i.Hide()); //esconde todos os itens da lista, rodando a função Hide() dentro deles
+        }
+
+        private void GetRandom()
+        {
+            screenBase[Random.Range(0, screenBase.Count)].animationDuration = 1; //metodo true random, pega um valor alatório dentro dos dois valores declarados
         }
 
     }
